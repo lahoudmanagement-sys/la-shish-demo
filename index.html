@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Concept demo website for La Shish Lebanese Restaurant, Guildford NSW.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>La Shish Guildford</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500&display=swap">
+<style>
+/* Layout: a deep cedar band carries the hero and the visit card; below it, quiet pale sections
+   where the menu is a typeset list (no cards), and two request forms sit on raised surfaces. */
+:root{
+  --bg:#F3F6F0; --surface:#FFFFFF; --ink:#15231B; --muted:#56655B; --line:#D5DDD2;
+  --cedar:#1C4733; --cedar-deep:#143526; --on-cedar:#F1F6EE; --on-cedar-muted:#B9CFC0;
+  --cedar-ink:#1C4733; --sumac:#9A1F40; --sumac-hover:#7F1733; --on-sumac:#FFFFFF;
+  --brass:#8A6414; --brass-soft:#F3E7C8; --ok:#1E7A46; --closed:#9A1F40;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --arabic:"Noto Kufi Arabic","Geeza Pro","Segoe UI",Tahoma,sans-serif;
+  --wrap:1120px; --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1813; --surface:#17241C; --ink:#E8EFE7; --muted:#9DB0A3; --line:#2A3B30;
+  --cedar:#173A2A; --cedar-deep:#102A1E; --on-cedar:#F1F6EE; --on-cedar-muted:#B9CFC0;
+  --cedar-ink:#8FCFA9; --sumac:#C23A5E; --sumac-hover:#D24B6F; --on-sumac:#FFFFFF;
+  --brass:#DDB45A; --brass-soft:#3A3018; --ok:#5CCB8A; --closed:#F08AA4; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0F1813; --surface:#17241C; --ink:#E8EFE7; --muted:#9DB0A3; --line:#2A3B30;
+  --cedar:#173A2A; --cedar-deep:#102A1E; --on-cedar:#F1F6EE; --on-cedar-muted:#B9CFC0;
+  --cedar-ink:#8FCFA9; --sumac:#C23A5E; --sumac-hover:#D24B6F; --on-sumac:#FFFFFF;
+  --brass:#DDB45A; --brass-soft:#3A3018; --ok:#5CCB8A; --closed:#F08AA4; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cedar-deep)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.015em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+
+/* demo ribbon */
+.ribbon{background:var(--brass-soft);color:var(--ink);font-size:.84rem}
+.ribbon .wrap{padding-block:8px;display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center}
+.ribbon b{font-weight:700}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--cedar-deep);color:var(--on-cedar)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.brand{text-decoration:none;display:flex;flex-direction:column;line-height:1;margin-right:auto}
+.brand strong{font-family:var(--display);font-weight:800;font-size:1.55rem;letter-spacing:-.02em}
+.brand span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-cedar-muted);margin-top:4px}
+.nav{display:flex;gap:22px;font-weight:600;font-size:.95rem}
+.nav a{text-decoration:none;padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--brass)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;text-decoration:none;border:0;cursor:pointer;border-radius:999px;padding:13px 22px;min-height:48px;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--sumac);color:var(--on-sumac)}
+.btn-primary:hover{background:var(--sumac-hover)}
+.btn-ghost{background:transparent;color:var(--on-cedar);box-shadow:inset 0 0 0 2px var(--on-cedar-muted)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 2px var(--on-cedar)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn-line:hover{box-shadow:inset 0 0 0 2px var(--cedar-ink)}
+.btn-sm{padding:9px 16px;min-height:40px;font-size:.92rem}
+
+/* hero */
+.hero{background-color:var(--cedar);color:var(--on-cedar);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E")}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center;padding-block:64px 72px}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.6rem);font-weight:800}
+.hero h1 em{font-style:normal;color:#E9C46A}
+.hero .lede{font-size:1.15rem;color:var(--on-cedar-muted);max-width:34em;margin-top:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.proof{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font-size:.95rem;color:var(--on-cedar-muted)}
+.proof b{color:var(--on-cedar)}
+.stars{color:#E9C46A;letter-spacing:2px}
+
+.visit{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.status{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--ok);flex:none}
+.status.is-closed .dot{background:var(--closed)}
+.visit dl{margin:0;display:grid;gap:12px}
+.visit dt{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.visit dd{margin:2px 0 0;font-weight:600}
+.phone-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phone-row a{font-family:var(--display);font-size:1.45rem;font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
+.copy{font:inherit;font-size:.8rem;font-weight:700;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;background:var(--bg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.visit .btn{width:100%}
+
+/* sections */
+section{padding-block:72px}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:40em}
+.sec-head h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
+.sec-head p{color:var(--muted)}
+
+/* ways */
+.ways{padding-block:0}
+.ways .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;transform:translateY(-28px)}
+.way{background:var(--surface);padding:22px 24px;text-decoration:none;display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-left-width:0}
+.way:first-child{border-left-width:1px;border-radius:var(--r) 0 0 var(--r)}
+.way:last-child{border-radius:0 var(--r) var(--r) 0}
+.way h3{font-size:1.2rem;font-weight:700}
+.way p{color:var(--muted);font-size:.95rem}
+.way span{font-weight:700;color:var(--cedar-ink);font-size:.95rem;margin-top:auto;padding-top:6px}
+.way:hover span{text-decoration:underline}
+
+/* menu */
+#menu{padding-top:44px}
+.menu-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-block:4px;scrollbar-width:none;flex:1 1 320px;min-width:0}
+.cats::-webkit-scrollbar{display:none}
+.cat{font:inherit;font-weight:600;font-size:.95rem;white-space:nowrap;border:0;cursor:pointer;border-radius:999px;padding:10px 16px;min-height:44px;background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.cat[aria-selected="true"]{background:var(--cedar);color:var(--on-cedar);box-shadow:none}
+.veg{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;cursor:pointer;min-height:44px}
+.veg input{width:20px;height:20px;accent-color:var(--cedar)}
+.cat-note{color:var(--muted);font-size:.95rem;margin:14px 0 4px;min-height:1.5em}
+.dishes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.dish{padding:16px 0;border-bottom:1px dashed var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;align-items:baseline}
+.dish h3{font-family:var(--body);font-size:1.05rem;font-weight:700;letter-spacing:0;line-height:1.3}
+.dish .ar{font-family:var(--arabic);font-size:.95rem;color:var(--brass);direction:rtl}
+.dish p{grid-column:1/-1;color:var(--muted);font-size:.93rem}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+.tag-pop{background:var(--sumac);color:var(--on-sumac)}
+.tag-v{box-shadow:inset 0 0 0 1px var(--cedar-ink);color:var(--cedar-ink)}
+.empty{color:var(--muted);padding:20px 0}
+.menu-foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.menu-foot small{color:var(--muted);flex:1 1 280px;font-size:.88rem}
+
+/* catering band */
+.band{background:var(--cedar);color:var(--on-cedar)}
+.band .eyebrow{color:#E9C46A}
+.band .sec-head p{color:var(--on-cedar-muted)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.occasions{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.occasions li{padding:16px 0;border-top:1px solid rgba(255,255,255,.16);display:grid;gap:2px}
+.occasions li:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
+.occasions b{font-family:var(--display);font-size:1.2rem}
+.occasions span{color:var(--on-cedar-muted);font-size:.95rem}
+.fact{margin-top:24px;font-size:.95rem;color:var(--on-cedar-muted)}
+.fact b{color:#E9C46A;font-family:var(--display);font-size:1.5rem;margin-right:6px}
+
+/* forms */
+.card{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:26px;border:1px solid var(--line)}
+.band .card{border-color:transparent;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.card h3{font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.card .sub{color:var(--muted);font-size:.93rem;margin-bottom:18px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.f.full{grid-column:1/-1}
+label,.lab{font-size:.84rem;font-weight:700}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;min-height:48px;width:100%;min-width:0}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--brass);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{font-weight:600;font-size:.95rem;cursor:pointer}
+.chips input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;padding:0}
+.chips span{display:inline-flex;align-items:center;justify-content:center;min-width:48px;min-height:44px;padding:0 14px;border-radius:999px;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line)}
+.chips input:checked+span{background:var(--cedar);color:var(--on-cedar);box-shadow:none}
+.chips input:focus-visible+span{outline:3px solid var(--brass);outline-offset:2px}
+form .btn{grid-column:1/-1}
+.fine{grid-column:1/-1;font-size:.84rem;color:var(--muted)}
+.done{display:grid;gap:12px}
+.done h3{color:var(--cedar-ink)}
+.done .summary{background:var(--bg);border-radius:10px;padding:14px;font-weight:600}
+.done .demo-note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--brass);padding-left:12px}
+
+/* reviews */
+.rating{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:center}
+.score{font-family:var(--display);font-weight:800;font-size:clamp(4.5rem,12vw,7.5rem);line-height:.9;color:var(--cedar-ink);font-variant-numeric:tabular-nums}
+.score small{display:block;font-family:var(--body);font-size:.95rem;font-weight:600;color:var(--muted);margin-top:10px;letter-spacing:0}
+.mentions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px;list-style:none;padding:0}
+.mentions li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:600;font-size:.95rem}
+.mentions li i{font-style:normal;color:var(--muted);font-weight:500;margin-left:6px}
+
+/* visit */
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hours td{padding:11px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:600}
+.hours tr.today td{color:var(--cedar-ink);font-weight:800}
+.know{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;font-size:.95rem}
+.know li{padding-left:18px;position:relative}
+.know li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--brass);transform:rotate(45deg)}
+.addr{font-family:var(--display);font-size:1.6rem;font-weight:700;line-height:1.15;margin-bottom:14px}
+
+footer{background:var(--cedar-deep);color:var(--on-cedar-muted);font-size:.92rem}
+footer .wrap{padding-block:36px 110px;display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between}
+footer a{color:var(--on-cedar)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+
+/* mobile action bar */
+.bar{display:none;position:fixed;inset:auto 0 0;z-index:9;background:var(--cedar-deep);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));gap:8px}
+.bar .btn{flex:1;padding-inline:8px;font-size:.95rem}
+
+@media (max-width:860px){
+  .hero .wrap,.split{grid-template-columns:minmax(0,1fr);gap:32px}
+  .hero .wrap{padding-block:40px 60px}
+  .ways .wrap{grid-template-columns:minmax(0,1fr)}
+  .way,.way:first-child,.way:last-child{border-left-width:1px;border-radius:0;border-top-width:0}
+  .way:first-child{border-top-width:1px;border-radius:var(--r) var(--r) 0 0}
+  .way:last-child{border-radius:0 0 var(--r) var(--r)}
+  .dishes{grid-template-columns:minmax(0,1fr)}
+  .rating{grid-template-columns:minmax(0,1fr);gap:20px}
+  section{padding-block:52px}
+  .nav,.top .btn{display:none}
+  .bar{display:flex}
+}
+@media (max-width:480px){ form{grid-template-columns:minmax(0,1fr)} .know{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .btn{transition:none} }
+</style>
+
+<div class="ribbon"><div class="wrap"><b>Concept demo.</b><span>A proposed website for La Shish, prepared by George Lahoud. Not the restaurant's live site, and the forms do not send anything yet.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top-of-page"><strong>La Shish</strong><span>Lebanese Restaurant · Guildford</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#menu">Menu</a><a href="#catering">Catering</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#book">Book a table</a>
+  </div>
+</header>
+
+<main id="top-of-page">
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:#E9C46A">Guildford Road · Open 7 days from 9 am</p>
+      <h1>Charcoal grill, mezze and <em>mansaf</em>, the Lebanese way.</h1>
+      <p class="lede">Breakfast, lunch and dinner in the heart of Guildford. Sit down with us, take it home, or let us cater your next gathering.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#book">Book a table</a>
+        <a class="btn btn-ghost" href="#menu">See the menu</a>
+        <a class="btn btn-ghost" href="https://www.ubereats.com/au/store/la-shish/GDANZ6lAWQGfAFJhAnJ6HQ" target="_blank" rel="noopener">Order delivery</a>
+      </div>
+      <div class="proof">
+        <span><span class="stars" aria-hidden="true">★★★★</span><span class="stars" aria-hidden="true" style="opacity:.45">★</span> <b>4.4</b> from <b>1,067</b> Google reviews</span>
+        <span><b>Dine in</b> · <b>Takeaway</b> · <b>Delivery</b> · <b>Catering</b></span>
+      </div>
+    </div>
+
+    <aside class="visit" aria-label="Plan your visit">
+      <div class="status" id="status"><span class="dot"></span><span id="status-text">Open daily from 9 am</span></div>
+      <dl>
+        <div><dt>Find us</dt><dd>265 Guildford Road, Guildford NSW 2161</dd></div>
+        <div><dt>Call to book or order</dt>
+          <dd class="phone-row"><a href="tel:+61296321847" id="phone">(02) 9632 1847</a><button class="copy" type="button" id="copy-phone">Copy</button></dd></div>
+      </dl>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=La+Shish+Lebanese+Restaurant+265+Guildford+Rd+Guildford+NSW+2161" target="_blank" rel="noopener">Get directions</a>
+    </aside>
+  </div>
+</div>
+
+<section class="ways" aria-label="Ways to eat with us">
+  <div class="wrap">
+    <a class="way" href="#book"><h3>Dine in</h3><p>Tables for two through to the whole family. High chairs and outdoor seating available.</p><span>Request a table →</span></a>
+    <a class="way" href="https://www.ubereats.com/au/store/la-shish/GDANZ6lAWQGfAFJhAnJ6HQ" target="_blank" rel="noopener"><h3>Takeaway and delivery</h3><p>Call ahead and pick up, or have it delivered through Uber Eats.</p><span>Order on Uber Eats →</span></a>
+    <a class="way" href="#catering"><h3>Catering</h3><p>Weddings, henna nights, office lunches and family celebrations.</p><span>Get a catering quote →</span></a>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The menu</p>
+      <h2>From the grill, the mezze table and the breakfast spread.</h2>
+    </div>
+    <div class="menu-bar">
+      <div class="cats" role="tablist" aria-label="Menu sections" id="cats"></div>
+      <label class="veg" for="veg-only"><input type="checkbox" id="veg-only"> Vegetarian only</label>
+    </div>
+    <p class="cat-note" id="cat-note"></p>
+    <ul class="dishes" id="dishes"></ul>
+    <div class="menu-foot">
+      <a class="btn btn-primary" href="#book">Book a table</a>
+      <a class="btn btn-line" href="https://www.ubereats.com/au/store/la-shish/GDANZ6lAWQGfAFJhAnJ6HQ" target="_blank" rel="noopener">Order delivery</a>
+      <small>Demo note: dishes are drawn from La Shish's public listings. Current dine-in prices, the full kids and drinks lists, and your own food photography are added at setup.</small>
+    </div>
+  </div>
+</section>
+
+<section id="catering" class="band">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head">
+        <p class="eyebrow">Catered by La Shish</p>
+        <h2>The same kitchen, at your celebration.</h2>
+        <p>Tell us the date and the headcount. We will come back with a menu and a quote built around your event.</p>
+      </div>
+      <ul class="occasions">
+        <li><b>Weddings and engagements</b><span>Full spreads with table styling to match your day.</span></li>
+        <li><b>Henna nights and family gatherings</b><span>Mixed grills, mezze and traditional mains for a full house.</span></li>
+        <li><b>Office lunches and functions</b><span>Platters delivered and set up, ready to serve.</span></li>
+        <li><b>Coffee cart</b><span>Barista coffee on site for your guests.</span></li>
+      </ul>
+      <p class="fact"><b>27</b>Google reviews mention our catering by name.</p>
+    </div>
+    <div class="card" id="cater-card">
+      <h3>Request a catering quote</h3>
+      <p class="sub">Takes about a minute. We reply by phone.</p>
+      <form id="cater-form" novalidate>
+        <div class="f"><label for="c-type">Type of event</label>
+          <select id="c-type" required><option value="">Choose one</option><option>Wedding or engagement</option><option>Henna night</option><option>Family celebration</option><option>Corporate or office</option><option>Iftar or community event</option><option>Other</option></select></div>
+        <div class="f"><label for="c-date">Event date</label><input id="c-date" type="date" required></div>
+        <div class="f"><label for="c-guests">Number of guests</label><input id="c-guests" type="number" min="10" step="1" inputmode="numeric" placeholder="e.g. 80" required></div>
+        <div class="f"><label for="c-style">Service</label>
+          <select id="c-style"><option>Delivered and set up</option><option>Pick up from the restaurant</option><option>Full service with styling</option><option>Coffee cart only</option></select></div>
+        <div class="f"><label for="c-name">Your name</label><input id="c-name" type="text" autocomplete="name" required></div>
+        <div class="f"><label for="c-phone">Mobile</label><input id="c-phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="f full"><label for="c-notes">Anything we should know? <span style="font-weight:500">(optional)</span></label><textarea id="c-notes" placeholder="Venue, dietary needs, dishes you have in mind"></textarea></div>
+        <p class="fine" id="cater-err" role="alert" hidden></p>
+        <button class="btn btn-primary" type="submit">Send catering request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head">
+        <p class="eyebrow">Reservations</p>
+        <h2>Book a table in under a minute.</h2>
+        <p>Send your request and we will confirm by phone or text. For tonight, or for groups of more than ten, calling is quickest.</p>
+      </div>
+      <p class="addr" style="font-variant-numeric:tabular-nums">(02) 9632 1847</p>
+      <p style="color:var(--muted)">Open from 9 am every day, until 9 pm Sunday to Thursday and 10 pm Friday and Saturday.</p>
+    </div>
+    <div class="card" id="book-card">
+      <h3>Request a table</h3>
+      <p class="sub">No account, no app. Just the details we need.</p>
+      <form id="book-form" novalidate>
+        <div class="f full"><span class="lab" id="guests-lab">Guests</span>
+          <div class="chips" role="radiogroup" aria-labelledby="guests-lab">
+            <label><input type="radio" name="guests" id="g2" value="2" checked><span>2</span></label>
+            <label><input type="radio" name="guests" id="g3" value="3"><span>3</span></label>
+            <label><input type="radio" name="guests" id="g4" value="4"><span>4</span></label>
+            <label><input type="radio" name="guests" id="g5" value="5"><span>5</span></label>
+            <label><input type="radio" name="guests" id="g6" value="6"><span>6</span></label>
+            <label><input type="radio" name="guests" id="g8" value="7 to 10"><span>7–10</span></label>
+          </div></div>
+        <div class="f"><label for="b-date">Date</label><input id="b-date" type="date" required></div>
+        <div class="f"><label for="b-time">Time</label><select id="b-time" required></select></div>
+        <div class="f"><label for="b-name">Your name</label><input id="b-name" type="text" autocomplete="name" required></div>
+        <div class="f"><label for="b-phone">Mobile</label><input id="b-phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="f full"><label for="b-notes">Requests <span style="font-weight:500">(optional)</span></label><input id="b-notes" type="text" placeholder="High chair, outdoor table, birthday"></div>
+        <p class="fine" id="book-err" role="alert" hidden></p>
+        <button class="btn btn-primary" type="submit">Request this table</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap rating">
+    <div class="score">4.4<small>from 1,067 Google reviews</small></div>
+    <div>
+      <p class="eyebrow">What Guildford says</p>
+      <h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;margin-top:8px">More than a thousand locals have rated us on Google.</h2>
+      <ul class="mentions" aria-label="Most mentioned in reviews">
+        <li>Catering<i>27 mentions</i></li><li>Fattoush<i>10</i></li><li>Iftar<i>9</i></li><li>Lemon garlic chicken<i>6</i></li>
+      </ul>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=La+Shish+Lebanese+Restaurant+265+Guildford+Rd+Guildford+NSW+2161" target="_blank" rel="noopener">Read the reviews on Google</a>
+    </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Visit</p>
+      <p class="addr" style="margin-top:10px">265 Guildford Road<br>Guildford NSW 2161</p>
+      <div class="cta-row" style="margin-top:0">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=La+Shish+Lebanese+Restaurant+265+Guildford+Rd+Guildford+NSW+2161" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn btn-line" href="tel:+61296321847">(02) 9632 1847</a>
+      </div>
+      <ul class="know">
+        <li>Wheelchair-accessible entrance, seating and toilet</li>
+        <li>Outdoor seating</li>
+        <li>High chairs, good for kids</li>
+        <li>Vegetarian and vegan options</li>
+        <li>Breakfast, lunch and dinner</li>
+        <li>Cards and tap to pay accepted</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow" style="margin-bottom:6px">Opening hours</p>
+      <table class="hours" id="hours"><tbody></tbody></table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:var(--on-cedar);font-family:var(--display);font-size:1.2rem">La Shish Lebanese Restaurant</b><br>265 Guildford Road, Guildford NSW 2161 · (02) 9632 1847</div>
+    <nav aria-label="Elsewhere">
+      <a href="https://www.instagram.com/lashish_restaurant/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@lashish_restaurant" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.ubereats.com/au/store/la-shish/GDANZ6lAWQGfAFJhAnJ6HQ" target="_blank" rel="noopener">Uber Eats</a>
+    </nav>
+    <div style="flex-basis:100%">Concept demo by George Lahoud · 0450 075 707. Rating and review counts as shown on Google on 12 November 2026.</div>
+  </div>
+</footer>
+
+<div class="bar" role="navigation" aria-label="Quick actions">
+  <a class="btn btn-ghost" href="tel:+61296321847">Call</a>
+  <a class="btn btn-primary" href="#book">Book</a>
+  <a class="btn btn-ghost" href="#menu">Menu</a>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- menu ---------- */
+  var SAND = "Served in Lebanese bread with salad and your choice of sauces.";
+  var MIX = " Served with bread and pickles.";
+  var MENU = [
+    {id:"mixed", name:"Mixed plates", note:"The house favourites. Skewers off the charcoal with falafel, dips and salad.", items:[
+      ["La Shish Mixed Plate","","A combination of Lebanese meat skewers, falafel, dips and salad."+MIX,"p"],
+      ["Mixed Skewer Platter","","Our grill skewers on one platter, made for sharing.","p"],
+      ["Lamb Mixed Plate","","Three skewers of lamb with falafel, dips and salad."+MIX,""],
+      ["Kafta Mixed Plate","كفتة","Four skewers of kafta with falafel, dips and salad."+MIX,""],
+      ["Chicken Mixed Plate","","Three skewers of chicken with falafel, dips and salad."+MIX,""],
+      ["La Vegetarian Mix","","Fried cauliflower, zucchini, eggplant, vine leaves, fattoush, dips and falafel."+MIX,"v"]
+    ]},
+    {id:"mains", name:"Grill and mains", note:"Traditional mains and charcoal grill plates.", items:[
+      ["Mansaf","منسف","Lamb and rice, the traditional way.","p"],
+      ["Shish Tawook","شيش طاووق","BBQ marinated diced chicken. Served with garlic and bread.",""],
+      ["Shish Kebab","","BBQ lamb cubes. Served with garlic and bread.",""],
+      ["Lamb Cutlets","","Marinated in Middle Eastern flavours. Served with rice and yoghurt dip.",""],
+      ["Lamb Shanks","","Served on a bed of rice with yoghurt dip.",""],
+      ["Chilli Lemon Chicken","","Chicken fillets marinated in chilli and lemon, mixed with fried potato slices.",""],
+      ["Chicken Mushroom in Creamy Sauce","","A long-standing favourite with regulars.",""],
+      ["Falafel Plate","فلافل","Crisp falafel with salad, pickles and tahini.","pv"],
+      ["Hummus with Shawarma","شاورما","Hummus topped with shawarma. Served with garlic and bread.",""],
+      ["Fatteh with Meat","فتة","Layered bread, chickpeas and yoghurt, topped with meat.",""],
+      ["Mujaddara","مجدرة","Lentils and rice with caramelised onion.","v"],
+      ["Lebanese Sausages","","Fried and served with garlic and bread.",""],
+      ["Sujuk","","Spiced sausage, served with bread.",""]
+    ]},
+    {id:"breakfast", name:"Breakfast", note:"From 9 am daily.", items:[
+      ["Lebanese Breakfast Mix","","A full Lebanese breakfast spread for the table.",""],
+      ["Labni","لبنة","Creamy strained yoghurt with a tangy finish.","v"],
+      ["Hummus","حمّص","Chickpeas blended with tahini, lemon and garlic.","v"],
+      ["Latte","","Barista-made. Regulars rate the coffee.","p"]
+    ]},
+    {id:"mezze", name:"Mezze and sides", note:"Dips, pastries and small plates to start or share.", items:[
+      ["Hummus","حمّص","Chickpeas blended with tahini, lemon and garlic.","v"],
+      ["Baba Ganoush","بابا غنوج","Smoky chargrilled eggplant with tahini.","v"],
+      ["Dip Platter","","Labni, baba ganoush and hummus with fried bread.","v"],
+      ["Hummus with Meat","","Hummus topped with meat and pine nuts.",""],
+      ["Kibbeh Raw","كبة نية","Raw meat, crushed wheat and onions.",""],
+      ["Fried Kibby","كبة","Crisp fried kibbeh.",""],
+      ["Vine Leaves","ورق عنب","Rolled vine leaves.",""],
+      ["Cheese Sumbusik","","Four pieces of cheese-filled pastry.","v"],
+      ["Fried Eggplant","","Crisp fried eggplant slices.","v"],
+      ["Fried Zucchini","","Crisp zucchini, lightly seasoned.","v"],
+      ["Hot Chips","","Served hot and crisp.","v"],
+      ["Wedges","","Served with sour cream and sweet chilli sauce.","v"]
+    ]},
+    {id:"salads", name:"Salads", note:"Made fresh to order.", items:[
+      ["Fattoush","فتوش","Parsley, lettuce, tomato, garlic, lemon juice and fried bread.","pv"],
+      ["Tabbouleh","تبولة","Parsley, crushed wheat, tomatoes, onion, mint, lemon juice and olive oil.","v"],
+      ["Lebanese Salad","","A simple house salad.","v"],
+      ["Labin and Cucumber","","Diced cucumber in yoghurt.","v"],
+      ["Greek Salad","","Tomatoes, cucumbers, feta and olives.","v"],
+      ["Garden Salad","","Lettuce, tomato, cucumber and onion.","v"]
+    ]},
+    {id:"sandwiches", name:"Sandwiches and burgers", note:"Quick lunches, rolled or stacked.", items:[
+      ["Shawarma Sandwich","شاورما",SAND,""],
+      ["Falafel Sandwich","فلافل",SAND,"v"],
+      ["Kibby Fried Sandwich","",SAND,""],
+      ["Labni Sandwich","",SAND,"v"],
+      ["Zucchini Sandwich","",SAND,"v"],
+      ["Hummus Sandwich","",SAND,"v"],
+      ["Chilli Mayonnaise Chicken Burger","","Grilled breast fillet with chilli mayonnaise, lettuce, tomato, onion and carrot.",""],
+      ["Lemon Herb Chicken Burger","","Grilled chicken with lemon and herbs.",""],
+      ["Lean Beef Burger","","Grilled lean beef patty with onions, cheese, lettuce, tomato and sauce.",""],
+      ["Wagyu Burger","","Wagyu patty, lettuce, tomato, beetroot, pickles, onion, cheese and our secret sauce.",""]
+    ]},
+    {id:"seafood", name:"Seafood", note:"", items:[
+      ["Samka Harah","سمكة حرة","Fish fillet in tahini sauce, served with chips.",""],
+      ["La Salmon","","Seasoned salmon in a creamy dill and caper sauce, with potato puree and vegetables.",""],
+      ["Garlic Prawns","","Prawns in a creamy red sauce. Served with rice.",""],
+      ["Seafood Basket","","A combination of fried seafood and chips.",""],
+      ["Fish and Chips","","Fried crumbed fish with chips and salad.",""]
+    ]},
+    {id:"drinks", name:"Drinks", note:"", items:[
+      ["Mint Lemonade","","Fresh lemon and mint over ice.","v"],
+      ["Latte","","Barista-made.","pv"],
+      ["Cappuccino","","Barista-made.","v"],
+      ["Dirty Chai","","Black tea and spice with a shot of espresso.","v"]
+    ]}
+  ];
+  var current = "mixed";
+  try { var saved = localStorage.getItem("lashish-cat"); if (saved && MENU.some(function(c){return c.id===saved;})) current = saved; } catch(e){}
+
+  function el(tag, cls, text){ var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  function renderCats(){
+    var box = $("cats"); box.textContent = "";
+    MENU.forEach(function(c){
+      var b = el("button","cat",c.name); b.type = "button"; b.id = "cat-" + c.id;
+      b.setAttribute("role","tab"); b.setAttribute("aria-selected", String(c.id === current));
+      b.addEventListener("click", function(){ current = c.id; try{ localStorage.setItem("lashish-cat", c.id); }catch(e){} renderCats(); renderDishes(); });
+      box.appendChild(b);
+    });
+  }
+  function renderDishes(){
+    var cat = MENU.filter(function(c){ return c.id === current; })[0];
+    var veg = $("veg-only").checked;
+    var list = $("dishes"); list.textContent = "";
+    $("cat-note").textContent = cat.note;
+    var shown = cat.items.filter(function(d){ return !veg || d[3].indexOf("v") > -1; });
+    if (!shown.length){ list.appendChild(el("li","empty","No vegetarian dishes in this section. Try Mezze and sides or Salads.")); return; }
+    shown.forEach(function(d){
+      var li = el("li","dish");
+      var h = el("h3", null, d[0]);
+      if (d[3].indexOf("p") > -1) h.appendChild(el("span","tag tag-pop","Popular"));
+      if (d[3].indexOf("v") > -1) h.appendChild(el("span","tag tag-v","V"));
+      li.appendChild(h);
+      var ar = el("span","ar",d[1]); ar.lang = "ar"; li.appendChild(ar);
+      li.appendChild(el("p", null, d[2]));
+      list.appendChild(li);
+    });
+  }
+  $("veg-only").addEventListener("change", renderDishes);
+  renderCats(); renderDishes();
+
+  /* ---------- hours and open status (Sydney time) ---------- */
+  var DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var CLOSE = [21,21,21,21,21,22,22], OPEN = 9;
+  function fmt(h){ return (h > 12 ? h - 12 : h) + (h >= 12 ? " pm" : " am"); }
+  function sydney(){
+    try {
+      var parts = new Intl.DateTimeFormat("en-AU",{timeZone:"Australia/Sydney",weekday:"long",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+      var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+      return { day: DAYS.indexOf(o.weekday), hour: (parseInt(o.hour,10) % 24) + parseInt(o.minute,10)/60 };
+    } catch(e){ var d = new Date(); return { day:d.getDay(), hour:d.getHours() + d.getMinutes()/60 }; }
+  }
+  var now = sydney();
+  var body = $("hours").tBodies[0];
+  [1,2,3,4,5,6,0].forEach(function(i){
+    var tr = el("tr", i === now.day ? "today" : null);
+    tr.appendChild(el("td", null, DAYS[i] + (i === now.day ? " · today" : "")));
+    tr.appendChild(el("td", null, fmt(OPEN) + " – " + fmt(CLOSE[i])));
+    body.appendChild(tr);
+  });
+  var st = $("status"), tx = $("status-text");
+  if (now.day > -1){
+    if (now.hour >= OPEN && now.hour < CLOSE[now.day]) tx.textContent = "Open now · closes " + fmt(CLOSE[now.day]);
+    else { st.classList.add("is-closed"); tx.textContent = now.hour < OPEN ? "Closed · opens 9 am today" : "Closed · opens 9 am tomorrow"; }
+  }
+
+  /* ---------- copy phone ---------- */
+  $("copy-phone").addEventListener("click", function(){
+    var btn = this, done = function(){ btn.textContent = "Copied"; setTimeout(function(){ btn.textContent = "Copy"; }, 1800); };
+    var select = function(){ var r = document.createRange(); r.selectNodeContents($("phone")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; };
+    try { navigator.clipboard.writeText("(02) 9632 1847").then(done, select); } catch(e){ select(); }
+  });
+
+  /* ---------- forms (demo: nothing is sent) ---------- */
+  function iso(d){ return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+  var today = new Date();
+  $("b-date").min = iso(today); $("b-date").value = iso(today); $("c-date").min = iso(today);
+  var tsel = $("b-time");
+  for (var h = 9; h <= 20; h++){ [0,30].forEach(function(m){
+    var o = el("option", null, (h > 12 ? h - 12 : h) + ":" + (m ? "30" : "00") + (h >= 12 ? " pm" : " am")); if (h === 19 && m === 0) o.selected = true; tsel.appendChild(o);
+  }); }
+  function niceDate(v){ var p = v.split("-"); var d = new Date(+p[0], p[1]-1, +p[2]); return d.toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"long"}); }
+  function missing(ids){ for (var i=0;i<ids.length;i++){ var f = $(ids[i]); if (!String(f.value).trim()){ f.focus(); return f; } } return null; }
+  function label(f){ var l = document.querySelector('label[for="'+f.id+'"]'); return l ? l.textContent.replace(/\(optional\)/,"").trim().toLowerCase() : "this field"; }
+  function finish(cardId, title, summary, next){
+    var card = $(cardId); card.textContent = "";
+    var box = el("div","done");
+    box.appendChild(el("h3", null, title));
+    box.appendChild(el("p","summary",summary));
+    box.appendChild(el("p", null, next));
+    box.appendChild(el("p","demo-note","Demo only: nothing was sent. On the live site this request lands in the restaurant's inbox and phone straight away, and the guest gets a confirmation."));
+    card.appendChild(box); card.scrollIntoView({block:"nearest"});
+  }
+  $("book-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var m = missing(["b-date","b-name","b-phone"]), err = $("book-err");
+    if (m){ err.hidden = false; err.textContent = "Please add your " + label(m) + " so we can confirm the table."; return; }
+    var g = document.querySelector('input[name="guests"]:checked').value;
+    finish("book-card","Request received, " + $("b-name").value.trim().split(" ")[0] + ".",
+      "Table for " + g + " · " + niceDate($("b-date").value) + " · " + tsel.value,
+      "We will confirm by phone or text shortly. Need it sooner? Call (02) 9632 1847.");
+  });
+  $("cater-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var m = missing(["c-type","c-date","c-guests","c-name","c-phone"]), err = $("cater-err");
+    if (m){ err.hidden = false; err.textContent = "Please add the " + label(m) + " so we can prepare your quote."; return; }
+    finish("cater-card","Thanks, " + $("c-name").value.trim().split(" ")[0] + ". Your request is in.",
+      $("c-type").value + " · " + niceDate($("c-date").value) + " · " + $("c-guests").value + " guests · " + $("c-style").value,
+      "We will call you to talk through the menu and send a quote.");
+  });
+})();
+</script>
+
+</html>
